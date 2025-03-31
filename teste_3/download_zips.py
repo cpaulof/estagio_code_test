@@ -5,6 +5,9 @@ import time
 from urllib.parse import urljoin
 
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(BASE_DIR)
+
 #extrai os links que terminam com .zip de cada url 2023, 2024
 def get_zip_files(url):
     response = requests.get(url)
@@ -38,7 +41,10 @@ def download_file(url, filename):
 def main():
     base_url = "https://dadosabertos.ans.gov.br/FTP/PDA/demonstracoes_contabeis"
     years = ['2023', '2024']
-    os.makedirs('downloads', exist_ok=True)
+    
+    
+    downloads_dir = os.path.join(BASE_DIR, 'downloads')
+    os.makedirs(downloads_dir, exist_ok=True)
     
     for year in years:
         year_url = f"{base_url}/{year}/"
@@ -47,7 +53,7 @@ def main():
         zip_files = get_zip_files(year_url)
         
         for zip_file in zip_files:
-            filename = os.path.join('downloads', zip_file['name'])
+            filename = os.path.join(downloads_dir, zip_file['name'])
             try:
                 download_file(zip_file['url'], filename)
                 time.sleep(10)
