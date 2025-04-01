@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "0046d5a4-fc1a-42a6-a3d7-802f376bb4b6",
+		"name": "API - Buscar Operadoras",
+		"description": "API para pesquisa de operadoras atvas ANS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43660712",
+		"_collection_link": "https://paulofernando-8754419.postman.co/workspace/Paulo-Fernando's-Workspace~15cc3d15-3c75-4b14-8bb0-17dbf50ae74b/collection/43660712-0046d5a4-fc1a-42a6-a3d7-802f376bb4b6?action=share&source=collection_link&creator=43660712"
+	},
+	"item": [
+		{
+			"name": "Verificar Saúde da API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"health"
+					]
+				},
+				"description": "Endpoint para verificar se a API está funcionando"
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Configurações de Pesquisa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/search_settings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"search_settings"
+					]
+				},
+				"description": "Retorna todas as colunas disponíveis e as colunas selecionadas para pesquisa"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Configurações de Pesquisa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"selected_columns\": [\n        \"Razao_Social\",\n        \"Nome_Fantasia\",\n        \"Registro_ANS\",\n        \"CNPJ\"\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/search_settings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"search_settings"
+					]
+				},
+				"description": "Atualiza as colunas que serão usadas na pesquisa"
+			},
+			"response": []
+		},
+		{
+			"name": "Pesquisar Operadoras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/search?q=saude",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "saude",
+							"description": "Termo de pesquisa (mínimo 3 caracteres)"
+						}
+					]
+				},
+				"description": "Pesquisa operadoras usando o termo especificado"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Todas as Operadoras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/operadoras?page=1&per_page=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"operadoras"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"description": "Número da página"
+						},
+						{
+							"key": "per_page",
+							"value": "10",
+							"description": "Itens por página"
+						}
+					]
+				},
+				"description": "Retorna uma lista paginada de todas as operadoras"
+			},
+			"response": []
+		}
+	]
+}
